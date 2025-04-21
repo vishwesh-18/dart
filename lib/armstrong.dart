@@ -1,16 +1,22 @@
 import 'dart:math';
-bool isArmstrong(int num){
-  String str=num.toString();
-  int n = str.length;
 
-  int sum=str.split('').fold(0,(acc,digit){
-    int d=int.parse(digit);
-    return acc + pow(d, n).toInt();
-  });
+bool isArmStrong(int num) {
+  int originalNum = num;
+  int sum = 0;
+  int digits = num.toString().length;
+  while (num > 0) {
+    int digit = num % 10;
+    sum += pow(digit, digits).toInt();
+    num ~/= 10;
+  }
 
-  return sum==num;
+  return sum == originalNum;
 }
 
-void main(){
-  print(isArmstrong(153));
+void main() {
+  print(isArmStrong(153));
+  print(isArmStrong(153));
+  print(isArmStrong(370));
+  print(isArmStrong(9474));
+  print(isArmStrong(123));
 }
